@@ -26,6 +26,7 @@ resource "aws_subnet" "volterra_inside" {
 resource "aws_subnet" "volterra_worker" {
   cidr_block        = "${var.cidrworkload}"
   availability_zone = local.azs[0]
+  vpc_id            = aws_vpc.volt.id
    
   tags = {
     Name = "${var.prefix}worker"

@@ -20,7 +20,7 @@ resource "aws_security_group" "nginx" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${chomp(data.http.myip.body)}/32"]
+    cidr_blocks = ["${chomp(data.http.myip.response_body)}/32"]
   }
 
   ingress {
@@ -65,14 +65,14 @@ resource "aws_security_group" "consul" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["10.8.0.0/16", "${chomp(data.http.myip.body)}/32"]
+    cidr_blocks = ["10.8.0.0/16", "${chomp(data.http.myip.response_body)}/32"]
   }
 
   ingress {
     from_port   = 8500
     to_port     = 8500
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16", "${chomp(data.http.myip.body)}/32"]
+    cidr_blocks = ["10.0.0.0/16", "${chomp(data.http.myip.response_body)}/32"]
   }
 
   ingress {
